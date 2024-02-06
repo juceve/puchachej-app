@@ -67,6 +67,8 @@ class CobrosAportes extends Component
         DB::beginTransaction();
         try {
             $movimientos = [];
+            $recibo = '';
+            $recibo .= $this->miembro->nombre . '|' . date('Y-m-d') . '|';
             foreach ($this->selAportes as $id) {
                 $aporte = Aporte::find($id);
 
@@ -96,11 +98,15 @@ class CobrosAportes extends Component
                     'pago_id' => $pago->id,
                 ]);
                 $movimientos[] = $movimiento;
+                $recibo .= $movimiento->id . '^Pago aporte^' . $aporte->codigo . '^' . $aporte->importe . '~';
             }
+            $recibo = substr($recibo, 0, -1);
+            $recibo .= '|' . $this->montototal;
             DB::commit();
             $this->resetAll();
             $this->emit('cerrarModales');
             $this->emit('success', 'Pago realizado con exito');
+            $this->emit('imprimir', $recibo);
         } catch (\Throwable $th) {
             DB::rollBack();
         }

@@ -54,7 +54,7 @@ class MovimientoController extends Controller
         $pago = Pago::create([
             'fecha' => date('Y-m-d'),
             'importe' => $request->monto,
-            'tipopago_id' => $request->tipopago,
+            'tipopago_id' => $request->tipopago_id,
             'movimiento_id' => $movimiento->id,
         ]);
 

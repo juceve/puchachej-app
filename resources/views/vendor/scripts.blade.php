@@ -29,4 +29,36 @@
             icon: "warning"
         });
     })
+
+Livewire.on('imprimir',data=>{
+    window.open("/impresiones/reciboaporte.php?data=" + data, "_blank");
+})
 </script>
+@if (session('warning'))
+<script>
+    Swal.fire(
+        'Atención!',
+        '{{ session('warning') }}',
+        'warning'
+    )
+</script>
+@endif
+
+@if (session('error'))
+<script>
+    Swal.fire(
+                'Error',
+                '{{ session('error') }}',
+                'error'
+            )
+</script>
+@endif
+@if (session('success'))
+<script>
+    Swal.fire(
+                'Excelente!',
+                '{{ session('success') }}',
+                'success'
+            )
+</script>
+@endif
