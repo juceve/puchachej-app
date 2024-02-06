@@ -25,12 +25,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Movimiento extends Model
 {
-    
+
     static $rules = [
-		'fecha' => 'required',
-		'cuenta_id' => 'required',
-		'user_id' => 'required',
-		'status' => 'required',
+        'fecha' => 'required',
+        'cuenta_id' => 'required',
+        'user_id' => 'required',
+        'status' => 'required',
     ];
 
     protected $perPage = 20;
@@ -40,7 +40,7 @@ class Movimiento extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha','descripcion','cuenta_id','user_id','monto','status'];
+    protected $fillable = ['fecha', 'descripcion', 'cuenta_id', 'user_id', 'monto', 'status'];
 
 
     /**
@@ -50,7 +50,11 @@ class Movimiento extends Model
     {
         return $this->hasMany('App\Models\Aportemiembro', 'movimiento_id', 'id');
     }
-    
+    public function pagos()
+    {
+        return $this->hasMany('App\Models\Pago', 'movimiento_id', 'id');
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -58,7 +62,7 @@ class Movimiento extends Model
     {
         return $this->hasOne('App\Models\Cuenta', 'id', 'cuenta_id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -66,6 +70,4 @@ class Movimiento extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
-    
-
 }

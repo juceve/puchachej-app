@@ -22,11 +22,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Pago extends Model
 {
-    
+
     static $rules = [
-		'fecha' => 'required',
-		'importe' => 'required',
-		'status' => 'required',
+        'fecha' => 'required',
+        'importe' => 'required',
+        'status' => 'required',
     ];
 
     protected $perPage = 20;
@@ -36,7 +36,7 @@ class Pago extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha','importe','tipopago_id','status'];
+    protected $fillable = ['fecha', 'importe', 'tipopago_id', 'movimiento_id', 'status'];
 
 
     /**
@@ -46,7 +46,7 @@ class Pago extends Model
     {
         return $this->hasMany('App\Models\Pagosaportemiembro', 'pago_id', 'id');
     }
-    
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -54,6 +54,8 @@ class Pago extends Model
     {
         return $this->hasOne('App\Models\Tipopago', 'id', 'tipopago_id');
     }
-    
-
+    public function movimiento()
+    {
+        return $this->hasOne('App\Models\Movimiento', 'id', 'movimiento_id');
+    }
 }

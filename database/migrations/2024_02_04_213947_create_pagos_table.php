@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->double('importe');
             $table->foreignId('tipopago_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('movimiento_id')->nullable()->constrained();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

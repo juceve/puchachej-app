@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cuenta;
 use App\Models\Movimiento;
+use App\Models\Pago;
+use App\Models\Tipopago;
 use Illuminate\Http\Request;
 
 /**
@@ -33,8 +35,9 @@ class MovimientoController extends Controller
     public function create()
     {
         $movimiento = new Movimiento();
+        $tipopagos = Tipopago::all()->pluck('nombre', 'id');;
         $cuentas = Cuenta::all()->pluck('nombre', 'id');
-        return view('movimiento.create', compact('movimiento', 'cuentas'));
+        return view('movimiento.create', compact('movimiento', 'cuentas', 'tipopagos'));
     }
 
     /**
@@ -48,6 +51,12 @@ class MovimientoController extends Controller
         request()->validate(Movimiento::$rules);
 
         $movimiento = Movimiento::create($request->all());
+        $pago = Pago::create([
+            'fecha' => date('Y-m-d'),
+            'importe' => $request->monto,
+            'tipopago_id' => $request->tipopago,
+            'movimiento_id' => $movimiento->id,
+        ]);
 
         return redirect()->route('movimientos.index')
             ->with('success', 'Movimiento created successfully.');

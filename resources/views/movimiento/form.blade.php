@@ -15,7 +15,6 @@
             <div class="col-12 col-md-6">
                 <div class="form-group">
                     {{ Form::label('cuenta') }}
-                    {{-- {{ Form::text('cuenta_id', $movimiento->cuenta_id, ['class' => 'form-control' . ($errors->has('cuenta_id') ? ' is-invalid' : ''), 'placeholder' => 'Cuenta Id']) }} --}}
                     {!! Form::select('cuenta_id', $cuentas, $movimiento->cuenta_id ? $movimiento->cuenta_id : '', [
                         'class' => 'form-control' . ($errors->has('cuenta_id') ? ' is-invalid' : ''),
                         'placeholder' => 'Seleccione una cuenta',
