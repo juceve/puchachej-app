@@ -91,6 +91,7 @@ class CobrosAportes extends Component
                     'fecha' => date('Y-m-d'),
                     'importe' => $aporte->importe,
                     'tipopago_id' => $this->selTipoPago,
+                    'movimiento_id' => $this->selTipoPago,
                 ]);
 
                 $pagoaportemiembro = Pagosaportemiembro::create([
@@ -110,5 +111,22 @@ class CobrosAportes extends Component
         } catch (\Throwable $th) {
             DB::rollBack();
         }
+    }
+
+    public function reimpresion($aportemiembro_id)
+    {
+        $aportemiembro = Aportemiembro::find($aportemiembro_id);
+        $fecha = $aportemiembro->fecha;
+        $miembro = $aportemiembro->miembro->nombre;
+        $codigo = $aportemiembro->aporte->codigo;
+        $movimiento = $aportemiembro->movimiento;
+        $pagosaportemiembro = $aportemiembro->pagosaportemiembros->first();
+        $importe = $pagosaportemiembro->pago->importe;
+        $recibo = '';
+        $recibo .= $miembro . '|' . $fecha . '|';
+        $recibo .= $movimiento->id . '^Pago aporte^' . $codigo . '^' . $importe;
+        $recibo .= '|' . $importe;
+
+        $this->emit('imprimir', $recibo);
     }
 }

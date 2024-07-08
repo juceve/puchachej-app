@@ -73,7 +73,7 @@
                 <th>ID</th>
                 <th>DETALLE</th>
                 <th>CODIGO</th>
-                <th>IMPORTE Bs.</th>
+                <th>IMPORTE</th>
             </tr>
         </thead>
         <tbody>
@@ -85,12 +85,15 @@
                 echo "<td>$fila[2]</td>";
                 echo "<td>" . number_format($fila[3], 2, '.') . "</td></tr>";
             }
-            echo "<tr><td colspan=3 align=right><b>Total</b></td><td><b>" . number_format($datos[3], 2, '.') . "</b></td><tr>"
+            echo "<tr><td colspan=3 align=right><b>Total Bs. </b></td><td><b>" . number_format($datos[3], 2, '.') . "</b></td><tr>"
             ?>
         </tbody>
     </table>
 
-
+    <p style="text-align: center;">
+        Muchas Gracias! <br>
+        *********************************
+    </p>
     <script>
         document.addEventListener("DOMContentLoaded", function(event) {
             window.print();

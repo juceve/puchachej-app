@@ -18,32 +18,32 @@ class VariosSeeder extends Seeder
         Cuenta::create([
             "nombre" => "Aporte Miembros",
             "tipo" => "INGRESO",
-            "estado" => "1"
+            "status" => "1"
         ]);
         Cuenta::create([
             "nombre" => "Recaudación Actividad",
             "tipo" => "INGRESO",
-            "estado" => "1"
+            "status" => "1"
         ]);
         Cuenta::create([
             "nombre" => "Donación",
             "tipo" => "INGRESO",
-            "estado" => "1"
+            "status" => "1"
         ]);
         Cuenta::create([
             "nombre" => "Pago Servicios",
             "tipo" => "EGRESO",
-            "estado" => "1"
+            "status" => "1"
         ]);
         Cuenta::create([
             "nombre" => "Devoluciones",
             "tipo" => "EGRESO",
-            "estado" => "1"
+            "status" => "1"
         ]);
         Cuenta::create([
             "nombre" => "Compras",
             "tipo" => "EGRESO",
-            "estado" => "1"
+            "status" => "1"
         ]);
 
         Tipopago::create([

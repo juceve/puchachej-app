@@ -19,7 +19,8 @@
                         </span>
 
                         <div class="float-right">
-                            <a href="{{ route('movimientos.index') }}" class="btn btn-info btn-sm float-right" data-placement="left">
+                            <a href="{{ route('movimientos.index') }}" class="btn btn-info btn-sm float-right"
+                                data-placement="left">
                                 <i class="fas fa-arrow-left"></i> Volver
                             </a>
                         </div>
@@ -51,6 +52,10 @@
                     <div class="form-group">
                         <strong>Monto Bs.:</strong>
                         {{ $movimiento->monto }}
+                    </div>
+                    <div class="form-group">
+                        <strong>Tipo Pago:</strong>
+                        {{ $movimiento->tipopago->nombre }}
                     </div>
                     <div class="form-group">
                         <strong>Estado:</strong>

@@ -40,7 +40,7 @@ class Movimiento extends Model
      *
      * @var array
      */
-    protected $fillable = ['fecha', 'descripcion', 'cuenta_id', 'user_id', 'monto', 'status'];
+    protected $fillable = ['fecha', 'descripcion', 'cuenta_id', 'user_id', 'monto', 'tipopago_id', 'status'];
 
 
     /**
@@ -69,5 +69,9 @@ class Movimiento extends Model
     public function user()
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
+    }
+    public function tipopago()
+    {
+        return $this->hasOne('App\Models\Tipopago', 'id', 'tipopago_id');
     }
 }

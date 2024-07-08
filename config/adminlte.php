@@ -344,6 +344,21 @@ return [
             ],
         ],
         [
+            'text'    => 'Reportes',
+            'icon'    => 'fas fa-fw fa-book',
+            'submenu' => [
+                [
+                    'text'          => 'Mensual',
+                    'route'         => 'reportemensual',
+                ],
+                [
+                    'text'          => 'Gestión',
+                    'route'         => 'reportegestion',
+                ],
+
+            ],
+        ],
+        [
             'text'    => 'Mantenimiento',
             'icon'    => 'fas fa-fw fa-sliders-h',
             'submenu' => [
