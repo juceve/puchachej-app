@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('multas', function (Blueprint $table) {
             $table->id();
             $table->date('fecha');
-            $table->double('importe');
-            $table->foreignId('tipopago_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('movimiento_id')->nullable()->constrained();
-
-            $table->boolean('status')->default(true);
+            $table->foreignId('miembro_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('motivo_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('detalles')->nullable();
+            $table->float('monto');
+            $table->boolean('estado');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('multas');
     }
 };

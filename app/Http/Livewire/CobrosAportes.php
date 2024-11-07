@@ -91,7 +91,7 @@ class CobrosAportes extends Component
                     'fecha' => date('Y-m-d'),
                     'importe' => $aporte->importe,
                     'tipopago_id' => $this->selTipoPago,
-                    'movimiento_id' => $this->selTipoPago,
+                    'movimiento_id' => $movimiento->id,
                 ]);
 
                 $pagoaportemiembro = Pagosaportemiembro::create([

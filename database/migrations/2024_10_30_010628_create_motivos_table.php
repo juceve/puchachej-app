@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pagos', function (Blueprint $table) {
+        Schema::create('motivos', function (Blueprint $table) {
             $table->id();
-            $table->date('fecha');
-            $table->double('importe');
-            $table->foreignId('tipopago_id')->nullable()->constrained()->nullOnDelete();
-            $table->foreignId('movimiento_id')->nullable()->constrained();
-
-            $table->boolean('status')->default(true);
+            $table->string('nombre');
+            $table->string('descripcion')->nullable();
+            $table->float('importe');
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pagos');
+        Schema::dropIfExists('motivos');
     }
 };
