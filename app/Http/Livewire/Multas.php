@@ -7,6 +7,7 @@ use App\Models\Motivo;
 use App\Models\Movimiento;
 use App\Models\Multa;
 use App\Models\Pago;
+use App\Models\Tipopago;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,15 +16,16 @@ use Livewire\Component;
 class Multas extends Component
 {
 
-    public $miembro_id = '', $detalles = '', $monto = '', $estado = false, $motivoid = '';
+    public $miembro_id = '', $detalles = '', $monto = '', $estado = false, $motivoid = '', $tipopagoid = '';
 
     public function render()
     {
         $miembros = Miembro::where('status', 1)->get();
         $motivos = Motivo::all();
         $multas = Multa::all();
+        $tipopagos = Tipopago::all();
         $this->emit('resetDataTable');
-        return view('livewire.multas', compact('miembros', 'multas', 'motivos'))->extends('adminlte::page');
+        return view('livewire.multas', compact('miembros', 'multas', 'motivos', 'tipopagos'))->extends('adminlte::page');
     }
 
     protected $rules = [
@@ -64,6 +66,7 @@ class Multas extends Component
                     'fecha' => date('Y-m-d'),
                     'descripcion' => 'Pago Multa | ID.:' . $multa->id . ' | ' . $miembro->nombre,
                     'cuenta_id' => 7,
+                    'tipopago_id' => $this->tipopagoid,
                     'user_id' => Auth::user()->id,
                     'monto' => $multa->monto
                 ]);
@@ -71,7 +74,7 @@ class Multas extends Component
                 $pago = Pago::create([
                     'fecha' => date('Y-m-d'),
                     'importe' => $multa->monto,
-                    'tipopago_id' => 1,
+                    'tipopago_id' => $this->tipopagoid,
                     'movimiento_id' => $movimiento->id,
                 ]);
 
@@ -105,6 +108,7 @@ class Multas extends Component
                 'fecha' => date('Y-m-d'),
                 'descripcion' => 'Pago Multa | ID.:' . $multa->id . ' | ' . $multa->miembro->nombre,
                 'cuenta_id' => 7,
+                'tipopago_id' => 1,
                 'user_id' => Auth::user()->id,
                 'monto' => $multa->monto
             ]);

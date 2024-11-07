@@ -340,6 +340,10 @@ return [
                     'text'          => 'Aportes',
                     'route'         => 'cobros.aportes',
                 ],
+                [
+                    'text'          => 'Multas',
+                    'route'         => 'multas',
+                ],
 
             ],
         ],

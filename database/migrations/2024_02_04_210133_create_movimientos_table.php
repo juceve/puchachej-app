@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->date('fecha');
             $table->longText('descripcion')->nullable();
-            $table->foreignId('cuenta_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('cuenta_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignId('tipopago_id')->nullable()->constrained()->nullOnDelete();
             $table->double('monto')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();

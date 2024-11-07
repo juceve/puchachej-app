@@ -137,6 +137,23 @@
                                         </select>
                                     </td>
                                 </tr>
+                                @if ($estado)
+                                    <tr>
+                                        <td>
+                                            <label>Tipo Pago:</label>
+                                        </td>
+                                        <td>
+                                            <select class="form-control" wire:model='tipopagoid'>
+                                                <option value="">Seleccione un Tipo Pago </option>
+                                                @foreach ($tipopagos as $tipopago)
+                                                    <option value="{{ $tipopago->id }}">{{ $tipopago->nombre }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                @endif
+
                             </tbody>
                         </table>
                     </div>
