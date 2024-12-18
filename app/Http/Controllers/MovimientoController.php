@@ -35,7 +35,7 @@ class MovimientoController extends Controller
     public function create()
     {
         $movimiento = new Movimiento();
-        $tipopagos = Tipopago::all()->pluck('nombre', 'id');;
+        $tipopagos = Tipopago::all()->pluck('nombre', 'id');
         $cuentas = Cuenta::all()->pluck('nombre', 'id');
         return view('movimiento.create', compact('movimiento', 'cuentas', 'tipopagos'));
     }
@@ -85,7 +85,8 @@ class MovimientoController extends Controller
     {
         $movimiento = Movimiento::find($id);
         $cuentas = Cuenta::all()->pluck('nombre', 'id');
-        return view('movimiento.edit', compact('movimiento', 'cuentas'));
+        $tipopagos = Tipopago::all()->pluck('nombre', 'id');
+        return view('movimiento.edit', compact('movimiento', 'cuentas','tipopagos'));
     }
 
     /**

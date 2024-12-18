@@ -359,6 +359,10 @@ return [
                     'text'          => 'Gestión',
                     'route'         => 'reportegestion',
                 ],
+                [
+                    'text'          => 'Deudores',
+                    'route'         => 'reportedeudores',
+                ],
 
             ],
         ],

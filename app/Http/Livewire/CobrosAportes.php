@@ -38,7 +38,7 @@ class CobrosAportes extends Component
     }
     public function render()
     {
-        $miembros = Miembro::all();
+        $miembros = Miembro::where('status',1)->get();
         $tipopagos = Tipopago::all();
         $aportesmiembros = Aportemiembro::all();
         $this->emit('dataTable');

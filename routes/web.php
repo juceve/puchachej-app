@@ -10,6 +10,7 @@ use App\Http\Controllers\PagosaportemiembroController;
 use App\Http\Controllers\TipopagoController;
 use App\Http\Livewire\CobrosAportes;
 use App\Http\Livewire\Multas;
+use App\Http\Livewire\Reportedeudores;
 use App\Http\Livewire\Reportegestion;
 use App\Http\Livewire\Reportemensual;
 use Illuminate\Support\Facades\Auth;
@@ -49,4 +50,5 @@ Route::middleware(['auth'])->group(function () {
     Route::get('multas', Multas::class)->name('multas');
     Route::get('reportes/mensual', Reportemensual::class)->name('reportemensual');
     Route::get('reportes/gestion', Reportegestion::class)->name('reportegestion');
+    Route::get('reportes/deudores', Reportedeudores::class)->name('reportedeudores');
 });
