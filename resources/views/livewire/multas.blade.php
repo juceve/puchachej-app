@@ -34,6 +34,8 @@
                                         <th>ID</th>
                                         <th>FECHA</th>
                                         <th>NOMBRE MIEMBRO</th>
+                                        <th>MOTIVO</th>
+                                        <th>IMPORTE Bs.</th>
                                         <th>ESTADO</th>
                                         <th></th>
                                     </tr>
@@ -44,6 +46,8 @@
                                             <td>{{ $multa->id }}</td>
                                             <td>{{ $multa->fecha }}</td>
                                             <td>{{ $multa->miembro->nombre }}</td>
+                                            <td>{{ $multa->motivo->nombre }}</td>
+                                            <td>{{ $multa->monto }}</td>
                                             <td>
                                                 @if ($multa->estado)
                                                     <span class="badge badge-pill badge-success">Pagado</span>

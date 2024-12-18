@@ -41,6 +41,7 @@ class CobrosAportes extends Component
         $miembros = Miembro::all();
         $tipopagos = Tipopago::all();
         $aportesmiembros = Aportemiembro::all();
+        $this->emit('dataTable');
         return view('livewire.cobros-aportes', compact('miembros', 'tipopagos', 'aportesmiembros'))->extends('adminlte::page');
     }
 

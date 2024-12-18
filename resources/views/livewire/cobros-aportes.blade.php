@@ -3,7 +3,7 @@
     @section('title', 'Cobro Aportes')
 
     @section('content_header')
-    <h1>Cobro Aportes</h1>
+        <h1>Cobro Aportes</h1>
     @stop
 
 
@@ -19,8 +19,8 @@
                             </span>
 
                             <div class="float-right">
-                                <button class="btn btn-info btn-sm float-right" data-placement="left"
-                                    data-toggle="modal" data-target="#modalCobro">
+                                <button class="btn btn-info btn-sm float-right" data-placement="left" data-toggle="modal"
+                                    data-target="#modalCobro">
                                     <i class="fas fa-plus"></i> Nuevo
                                 </button>
                             </div>
@@ -33,6 +33,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <th>FECHA</th>
                                         <th>MIEMBRO</th>
                                         <th>CODIGO</th>
                                         <th>ESTADO</th>
@@ -41,29 +42,30 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($aportesmiembros as $item)
-                                    <tr>
-                                        <td>{{ $item->id }}</td>
-                                        <td>{{ $item->miembro->nombre }}</td>
-                                        <td>{{ $item->aporte->codigo }}</td>
-                                        <td>
-                                            @if ($item->status)
-                                            <span class="badge badge-pill badge-success">Activo</span>
-                                            @else
-                                            <span class="badge badge-pill badge-secondary">Inactivo</span>
-                                            @endif
-                                        </td>
-                                        <td align="right">
-                                            {{-- <button class="btn btn-info btn-sm" title="Ver Info">
+                                        <tr>
+                                            <td>{{ $item->id }}</td>
+                                            <td>{{ $item->fecha }}</td>
+                                            <td>{{ $item->miembro->nombre }}</td>
+                                            <td>{{ $item->aporte->codigo }}</td>
+                                            <td>
+                                                @if ($item->status)
+                                                    <span class="badge badge-pill badge-success">Activo</span>
+                                                @else
+                                                    <span class="badge badge-pill badge-secondary">Inactivo</span>
+                                                @endif
+                                            </td>
+                                            <td align="right">
+                                                {{-- <button class="btn btn-info btn-sm" title="Ver Info">
                                                 <i class="fas fa-eye"></i>
                                             </button> --}}
 
-                                            <button class="btn btn-sm btn-warning" title="Reimprimir Recibo"
-                                                wire:click='reimpresion({{$item->id}})'>
-                                                <i class="fas fa-print"></i> Reimprimir
-                                            </button>
+                                                <button class="btn btn-sm btn-warning" title="Reimprimir Recibo"
+                                                    wire:click='reimpresion({{ $item->id }})'>
+                                                    <i class="fas fa-print"></i> Reimprimir
+                                                </button>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -91,7 +93,7 @@
                         <select name="miembros" id="miembros" class="form-control" wire:model='selMiembro'>
                             <option value="">Seleccione un miembro</option>
                             @foreach ($miembros as $item)
-                            <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                                <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -110,30 +112,31 @@
                                 </thead>
                                 <tbody>
                                     @if ($aportesgestion)
-                                    @foreach ($aportesgestion as $item)
-                                    @php
-                                    $data = explode('-', $item->codigo);
-                                    @endphp
-                                    <tr class="text-center">
+                                        @foreach ($aportesgestion as $item)
+                                            @php
+                                                $data = explode('-', $item->codigo);
+                                            @endphp
+                                            <tr class="text-center">
 
-                                        <td class="align-middle">{{ $item->codigo }}</td>
-                                        <td class="align-middle">{{ $data[0] }}</td>
-                                        <td class="align-middle">
-                                            @if ($data[0] <= date('n')) <span class="badge badge-pill badge-danger">
-                                                Impaga</span>
-                                                @else
-                                                <span class="badge badge-pill badge-secondary">Impaga</span>
-                                                @endif
-                                        </td>
-                                        <td class="align-middle">
-                                            {{ number_format($item->importe, 2, '.') }} Bs.
-                                        </td>
-                                        <td class="align-middle">
-                                            <input type="checkbox" id="sel1" value="{{ $item->id }}"
-                                                wire:model='selAportes'>
-                                        </td>
-                                    </tr>
-                                    @endforeach
+                                                <td class="align-middle">{{ $item->codigo }}</td>
+                                                <td class="align-middle">{{ $data[0] }}</td>
+                                                <td class="align-middle">
+                                                    @if ($data[0] <= date('n'))
+                                                        <span class="badge badge-pill badge-danger">
+                                                            Impaga</span>
+                                                    @else
+                                                        <span class="badge badge-pill badge-secondary">Impaga</span>
+                                                    @endif
+                                                </td>
+                                                <td class="align-middle">
+                                                    {{ number_format($item->importe, 2, '.') }} Bs.
+                                                </td>
+                                                <td class="align-middle">
+                                                    <input type="checkbox" id="sel1" value="{{ $item->id }}"
+                                                        wire:model='selAportes'>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     @endif
 
                                 </tbody>
@@ -142,12 +145,12 @@
                     </div>
                 </div>
                 @if ($aportesgestion)
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click='resetAll'><i
-                            class="fas fa-times"></i> Cerrar</button>
-                    <button type="button" class="btn btn-success" wire:click='pagar1'>Pagar <i
-                            class="fas fa-cash-register"></i></button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" wire:click='resetAll'><i
+                                class="fas fa-times"></i> Cerrar</button>
+                        <button type="button" class="btn btn-success" wire:click='pagar1'>Pagar <i
+                                class="fas fa-cash-register"></i></button>
+                    </div>
                 @endif
 
             </div>
@@ -175,7 +178,7 @@
                         <select wire:model='selTipoPago' class="form-control">
                             <option value="">Seleccione un tipo</option>
                             @foreach ($tipopagos as $item)
-                            <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                                <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -201,8 +204,8 @@
 
 </div>
 @section('js')
-<script>
-    document.addEventListener('livewire:load', function() {
+    <script>
+        document.addEventListener('livewire:load', function() {
             $('#modalCobro').on('shown.bs.modal', function() {
                 if ($('#miembros').length) {
                     $('#miembros').select2({
@@ -223,10 +226,10 @@
 
             });
         });
-</script>
+    </script>
 
-<script>
-    Livewire.on('abrirpago2', () => {
+    <script>
+        Livewire.on('abrirpago2', () => {
             $('#modalPago2').modal('show');
         });
 
@@ -234,10 +237,25 @@
             $('#modalCobro').modal('hide');
             $('#modalPago2').modal('hide');
         });
-</script>
-<script>
-    $('.dataTable').DataTable({
+
+        Livewire.on('dataTable', () => {
+            $('.dataTable').DataTable({
+                destroy: true,
+                order: [[0, 'desc']],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                },
+                responsive: {
+                    details: false
+                }
+            });
+        });
+    </script>
+    <script>
+        $('.dataTable').DataTable({
+
             destroy: true,
+            order: [[0, 'desc']],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             },
@@ -245,5 +263,5 @@
                 details: false
             }
         });
-</script>
+    </script>
 @endsection
