@@ -32,7 +32,7 @@ class CobrosAportes extends Component
         }
 
         $this->miembro = Miembro::find($this->selMiembro);
-        $this->aportesgestion = Aporte::where("gestion", date('Y'))
+        $this->aportesgestion = Aporte::where("gestion", "<=",date('Y'))
             ->whereNotIn('id', $apM)
             ->get();
     }

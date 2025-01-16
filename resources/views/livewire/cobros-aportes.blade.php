@@ -121,7 +121,7 @@
                                                 <td class="align-middle">{{ $item->codigo }}</td>
                                                 <td class="align-middle">{{ $data[0] }}</td>
                                                 <td class="align-middle">
-                                                    @if ($data[0] <= date('n'))
+                                                    @if ($data[0] <= date('n') || $data[1] < date('Y'))
                                                         <span class="badge badge-pill badge-danger">
                                                             Impaga</span>
                                                     @else
@@ -241,7 +241,9 @@
         Livewire.on('dataTable', () => {
             $('.dataTable').DataTable({
                 destroy: true,
-                order: [[0, 'desc']],
+                order: [
+                    [0, 'desc']
+                ],
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                 },
@@ -255,7 +257,9 @@
         $('.dataTable').DataTable({
 
             destroy: true,
-            order: [[0, 'desc']],
+            order: [
+                [0, 'desc']
+            ],
             "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
             },

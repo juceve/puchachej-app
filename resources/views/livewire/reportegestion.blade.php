@@ -14,7 +14,7 @@
                             <label class="input-group-text" for="gestion">Gestion</label>
                         </div>
                         <select class="custom-select" id="gestion" wire:model='gestion'>
-                            <option value="">Seleccione un Gestion</option>
+                            <option value="">Todas las gestiones</option>
                             @foreach ($gestiones as $gestion)
                             <option value="{{$gestion->gestion}}">{{$gestion->gestion}}</option>
                             @endforeach
